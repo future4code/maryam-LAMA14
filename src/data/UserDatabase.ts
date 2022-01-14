@@ -21,8 +21,9 @@ export class UserDatabase extends BaseDatabase {
                     role,
                 })
                 .into(UserDatabase.TABLE_NAME);
-        } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message);
+        } catch (error) {
+            if (error instanceof Error)
+                throw new Error(error.sqlMessage || error.message);
         }
     }
 
